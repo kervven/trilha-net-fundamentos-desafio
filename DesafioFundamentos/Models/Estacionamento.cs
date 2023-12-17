@@ -4,8 +4,8 @@ namespace DesafioFundamentos.Models
 {
     public class Estacionamento
     {
-        private decimal PrecoInicial {get; set;}
-        private decimal PrecoPorHora {get; set;}
+        private decimal PrecoInicial { get; set; }
+        private decimal PrecoPorHora { get; set; }
         private List<string> veiculos = new List<string>();
 
         public Estacionamento(decimal PrecoInicial, decimal PrecoPorHora)
@@ -26,15 +26,16 @@ namespace DesafioFundamentos.Models
             if (veiculos.Any(x => x.ToUpper() == addPlacaNoSistema.ToUpper()))
             {
                 Console.WriteLine("Ops, a usa placa já existe em nosso sistema!");
-            } 
-            else 
+            }
+            else
             {
                 veiculos.Add(addPlacaNoSistema);
                 System.Threading.Thread.Sleep(1000);
                 Console.WriteLine("\n Sua placa está válida! A registrar no sistema... \n");
 
                 int cont = 0;
-                foreach(string valor in veiculos){
+                foreach (string valor in veiculos)
+                {
                     cont++;
                     System.Console.WriteLine($"{cont}º placa cadastrada no sistema: {valor}");
                 }
@@ -83,7 +84,10 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Os veículos estacionados são:");
                 // TODO: Realizar um laço de repetição, exibindo os veículos estacionados
-                // *IMPLEMENTE AQUI*
+                foreach (string veiculo in veiculos)
+                {
+                    Console.WriteLine(veiculo);
+                }
             }
             else
             {
