@@ -1,22 +1,47 @@
+using System.Text.RegularExpressions;
+
 namespace DesafioFundamentos.Models
 {
     public class Estacionamento
     {
-        private decimal precoInicial = 0;
-        private decimal precoPorHora = 0;
+        private decimal PrecoInicial { get; set;}
+        private decimal PrecoPorHora {get; set;}
         private List<string> veiculos = new List<string>();
 
-        public Estacionamento(decimal precoInicial, decimal precoPorHora)
+        public Estacionamento(decimal PrecoInicial, decimal PrecoPorHora)
         {
-            this.precoInicial = precoInicial;
-            this.precoPorHora = precoPorHora;
+            this.PrecoInicial = PrecoInicial;
+            this.PrecoPorHora = PrecoPorHora;
         }
 
         public void AdicionarVeiculo()
         {
             // TODO: Pedir para o usuário digitar uma placa (ReadLine) e adicionar na lista "veiculos"
-            // *IMPLEMENTE AQUI*
-            Console.WriteLine("Digite a placa do veículo para estacionar:");
+            Console.WriteLine("Digite a placa do veículo para estacionar: (ex: KKS8806)");
+            string addPlacaNoSistema = Console.ReadLine();
+
+            Console.WriteLine("Verificando se sua placa já está no sistema");
+            System.Threading.Thread.Sleep(1500);
+
+            if (veiculos.Any(x => x.ToUpper() == addPlacaNoSistema.ToUpper()))
+            {
+                Console.WriteLine("Ops, a usa placa já existe em nosso sistema!");
+            } 
+            else 
+            {
+                veiculos.Add(addPlacaNoSistema);
+                System.Threading.Thread.Sleep(1000);
+                Console.WriteLine("\n Sua placa está válida! A registrar no sistema... \n");
+
+                int cont = 0;
+                foreach(string valor in veiculos){
+                    cont++;
+                    System.Console.WriteLine($"{cont}º placa cadastrada no sistema: {valor}");
+                }
+            }
+        }
+
+
         }
 
         public void RemoverVeiculo()
