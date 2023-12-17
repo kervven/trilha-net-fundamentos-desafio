@@ -4,8 +4,8 @@ namespace DesafioFundamentos.Models
 {
     public class Estacionamento
     {
-        private decimal PrecoInicial { get; set;}
-        private decimal PrecoPorHora {get; set;}
+        private decimal PrecoInicial = 5;
+        private decimal PrecoPorHora = 2;
         private List<string> veiculos = new List<string>();
 
         public Estacionamento(decimal PrecoInicial, decimal PrecoPorHora)
@@ -42,15 +42,16 @@ namespace DesafioFundamentos.Models
         }
 
 
-        }
 
         public void RemoverVeiculo()
         {
             Console.WriteLine("Digite a placa do veículo para remover:");
 
             // Pedir para o usuário digitar a placa e armazenar na variável placa
-            // *IMPLEMENTE AQUI*
-            string placa = "";
+            string placa = Console.ReadLine();
+
+            Console.WriteLine("Verificando veículo...");
+            System.Threading.Thread.Sleep(1000);
 
             // Verifica se o veículo existe
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
@@ -58,15 +59,17 @@ namespace DesafioFundamentos.Models
                 Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
 
                 // TODO: Pedir para o usuário digitar a quantidade de horas que o veículo permaneceu estacionado,
-                // TODO: Realizar o seguinte cálculo: "precoInicial + precoPorHora * horas" para a variável valorTotal                
-                // *IMPLEMENTE AQUI*
-                int horas = 0;
-                decimal valorTotal = 0; 
+                // TODO: Realizar o seguinte cálculo: "precoInicial + precoPorHora * horas" para a variável valorTotal
+                if (int.TryParse(Console.ReadLine(), out int horas))
+                {
+                    decimal valorTotal = PrecoInicial + (PrecoPorHora * horas);
 
-                // TODO: Remover a placa digitada da lista de veículos
-                // *IMPLEMENTE AQUI*
-
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                    Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                }
+                else
+                {
+                    Console.WriteLine("Entrada inválida para horas. Certifique-se de digitar um número inteiro.");
+                }
             }
             else
             {
